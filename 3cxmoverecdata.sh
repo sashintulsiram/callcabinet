@@ -35,8 +35,8 @@ IFS=$'\n'
 #       echo "$SRC" >>./getccrecdata.log
         DST=$(echo $SRCDST | cut -f1 -d-) >>./getccrecdata.log
 #       echo "$DST" >>./getccrecdata.log
-#       CID=$(echo $filename | cut -f6 -d-)
-#       CALLID="${CID%.*}"
+        CID=$(echo $filename | cut -f6 -d-)
+        CALLID="${CID%.*}"
           if [ "$DST" -gt "$SRC" ]; then DIR=INCOMING; EXT=$SRC; PHN=$DST
           else DIR=OUTGOING; EXT=$DST; PHN=$SRC
           fi
