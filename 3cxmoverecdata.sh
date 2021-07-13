@@ -37,17 +37,25 @@ IFS=$'\n'
 #       echo "$DST" >>./getccrecdata.log
 #       CID=$(echo $filename | cut -f6 -d-)
 #       CALLID="${CID%.*}"
-          if [ "$SRC" -gt "$DST" ]; then DIR=INCOMING; EXT=$SRC; PHN=$DST
+          if [ "$DST" -gt "$SRC" ]; then DIR=INCOMING; EXT=$SRC; PHN=$DST
           else DIR=OUTGOING; EXT=$DST; PHN=$SRC
           fi
           if [ -z "$EXT" ]; then EXT=anonymous;
           fi
           if [ -z "$PHN" ]; then PHN=anonymous;
           fi
-        DATEF=$(stat -c %y "$filename");
-        DATEFO="${DATEF%.*}"
-        DATETIME=${DATEFO/ /T}
-        DATE=$DATETIME MIN=$(echo $DATETIME| cut -c 11,12)
+#        DATEF=$(stat -c %y "$filename");
+#        DATEFO="${DATEF%.*}"
+#        DATETIME=${DATEFO/ /T}
+#        DATE=$DATETIME MIN=$(echo $DATETIME| cut -c 11,12)
+        DATETIME=$(echo $filename| cut -d '_' -f 3)
+        YEAR=$(echo $DATETIME| cut -c 1-4)
+        MONTH=$(echo $DATETIME| cut -c 5,6)
+        DAY=$(echo $DATETIME| cut -c 7,8)
+        HOUR=$(echo $DATETIME| cut -c 9,10)
+        MIN=$(echo $DATETIME| cut -c 11,12)
+        SEC=$(echo $DATETIME| cut -c 13,14)
+        DATE=${YEAR}-${MONTH}-${DAY}T${HOUR}:${MIN}:${SEC} 
         FOLDERS='date +"%Y/%m/%d"' SEC=$(echo $DATETIME| cut -c 13,14)
         DURATION=$(soxi -D "$filename" | cut -d . -f1)
         mkdir -p /home/callcabinet/recordings/${FOLDERS}
