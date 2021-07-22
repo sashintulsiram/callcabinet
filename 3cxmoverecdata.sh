@@ -37,8 +37,8 @@ IFS=$'\n'
 #       echo "$DST" >>./getccrecdata.log
         CID=$(echo $filename | cut -f6 -d-)
         CALLID="${CID%.*}"
-          if [ "$SRC" -gt "$DST" ]; then DIR=INCOMING; EXT=$DST; PHN=$SRC
-          else DIR=OUTGOING; EXT=$SRC; PHN=$DST
+          if [ "$DST" -gt "$SRC" ]; then DIR=INCOMING; EXT=$SRC; PHN=$DST
+          else DIR=OUTGOING; EXT=$DST; PHN=$SRC
           fi
           if [ -z "$EXT" ]; then EXT=anonymous;
           fi
