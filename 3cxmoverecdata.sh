@@ -60,11 +60,11 @@ do
         FOLDERS=`date +"%Y/%m/%d"`
         DURATION=$(soxi -D "$filename" | cut -d . -f1)
         mkdir -p /home/callcabinet/recordings/${FOLDERS}
-        mv "$filename" $DSTDR/${FOLDERS}/${PHN}_${DATE}_${EXT}_${DURATION}_${DIR}.WAV
+        mv "$filename" $DSTDR/${FOLDERS}/${PHN}_${DATE}_${EXT}_${DIR}_${DURATION}.WAV
 # Example with SubSiteID:
-#       mv "$filename" $DSTDR/${FOLDERS}/${PHN}_${DATE}_${EXT}_${DURATION}_${DIR}_${SUBSITEID}.WAV
+#       mv "$filename" $DSTDR/${FOLDERS}/${PHN}_${DATE}_${EXT}_${DIR}_${DURATION}_${SUBSITEID}.WAV
         now=$(date +%Y-%m-%d%I:%M:%S)
-        echo $now Found new recording and moved file: "$filename" to CallCabinet repository: $DSTDR/${PHN}_${DATE}_${EXT}_${DURATION}_${DIR}.WAV
+        echo $now Found new recording and moved file: "$filename" to CallCabinet repository: $DSTDR/${PHN}_${DATE}_${EXT}_${DIR}_${DURATION}.WAV
 done
 IFS="$OIFS"
 #echo Completed. View movelogs for details
